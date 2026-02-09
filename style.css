@@ -79,7 +79,7 @@ body {
 
 .subtitle {
     font-size: 2rem;
-    color: #FFFFFF;
+    color: #FFD700; /* Gold */
     font-weight: 400;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
     margin-bottom: 2rem;
@@ -88,7 +88,7 @@ body {
 
 .conference-link h3 {
     font-size: 2rem;
-    color: #FFFFFF;
+    color: #FFD700; /* Gold */
     font-weight: 400;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
     margin-bottom: 3rem;
@@ -96,15 +96,14 @@ body {
 
 .conference-link h3 {
     font-size: 2rem;
-    color: #FFFFFF;
+    color: #FFD700; /* Gold */
     font-weight: 400;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
-    text-decoration: underline;
 }
 
 .event-details h3 {
     font-size: 2rem;
-    color: #FFFFFF; /* White text */
+    color: #FFD700; /* Gold */
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
     margin-bottom: 1.5rem;
 }
