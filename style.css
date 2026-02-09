@@ -323,11 +323,11 @@ footer p {
 
   /* background-image: url("images/OpenClusters.png"); */
     background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+    linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
     url("images/OpenClusters.png");
   background-size: cover;        /* fit width, keep aspect */
   background-position: center;   /* center image */
-  background-repeat: repeat;
+  background-repeat: no-repeat;
 
   display: flex;
   align-items: center;
