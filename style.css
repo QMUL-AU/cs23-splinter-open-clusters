@@ -321,10 +321,13 @@ footer p {
   width: 100%;
   min-height: 70vh;
 
-  background-image: url("images/OpenClusters.png");
+  /* background-image: url("images/OpenClusters.png"); */
+    background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+    url("images/OpenClusters.png");
   background-size: cover;        /* fit width, keep aspect */
   background-position: center;   /* center image */
-  background-repeat: no-repeat;
+  background-repeat: repeat;
 
   display: flex;
   align-items: center;
