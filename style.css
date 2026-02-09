@@ -62,7 +62,7 @@ body {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)
     color: white;
     padding: 6rem 0;
     text-align: center;
@@ -70,6 +70,8 @@ body {
 
 .main-title {
     font-size: 4rem;
+    color: #FFD700; /* Gold */
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9);
     font-weight: 700;
     margin-bottom: 1rem;
     line-height: 1.2;
@@ -77,7 +79,9 @@ body {
 
 .subtitle {
     font-size: 2rem;
+    color: #FFFFFF;
     font-weight: 400;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
     margin-bottom: 2rem;
     line-height: 1.4;
 }
@@ -322,7 +326,7 @@ footer p {
   min-height: 70vh;
   /* background-image: url("images/OpenClusters.png"); */
     background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
+    linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
     url("images/OpenClusters.png");
   background-size: cover;        /* fit width, keep aspect */
   background-position: center;   /* center image */
