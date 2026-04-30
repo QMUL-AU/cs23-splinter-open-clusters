@@ -345,35 +345,131 @@ footer p {
   position: relative;
 }
 
-.schedule-table {
+/* ── Conference Schedule Table ── */
+.conf-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 14px;
+  border: 1px solid #d0d5e8;
+  border-radius: 10px;
+  overflow: hidden;
+  table-layout: fixed;
+  font-family: 'Outfit', 'Segoe UI', sans-serif;
+  margin-top: 1rem;
 }
-.schedule-table th {
-  text-align: left;
-  padding: 10px 12px;
-  border-bottom: 2px solid #ccc;
+
+/* Column widths */
+.conf-table thead th:nth-child(1) { width: 13%; }
+.conf-table thead th:nth-child(2) { width: 20%; }
+.conf-table thead th:nth-child(3) { width: 22%; }
+.conf-table thead th:nth-child(4) { width: 45%; }
+
+/* Header */
+.conf-table thead tr {
+  background: #3a5fc8;
+}
+.conf-table thead th {
+  color: #fff;
+  font-weight: 500;
   font-size: 12px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #666;
+  padding: 12px 14px;
+  text-align: left;
+  border: none;
 }
-.schedule-table td {
-  padding: 10px 12px;
-  border-bottom: 1px solid #eee;
-  vertical-align: top;
+
+/* Body rows */
+.conf-table tbody tr {
+  border-bottom: 1px solid #d0d5e8;
+  transition: background 0.1s;
 }
-.schedule-table .time {
+.conf-table tbody tr:last-child {
+  border-bottom: none;
+}
+.conf-table tbody tr:hover:not(.break-row):not(.panel-row) {
+  background: #eef1fc;
+}
+
+/* Cells */
+.conf-table tbody td {
+  padding: 11px 14px;
+  vertical-align: middle;
+  font-size: 14px;
+  color: #1a1e2e;
+  line-height: 1.45;
+}
+
+/* Time column — never wraps */
+.conf-table .time-col {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #3a5fc8;
   white-space: nowrap;
-  font-family: monospace;
-  color: #555;
+}
+
+/* Affiliation column */
+.conf-table .affil-col {
+  font-size: 12.5px;
+  color: #6b7280;
+}
+
+/* Talk title column */
+.conf-table .title-col {
+  font-size: 14.5px;
+}
+
+/* (TBC) label */
+.conf-table .tbc {
+  font-weight: 300;
+  font-size: 11px;
+  color: #6b7280;
+}
+
+/* Sub-label e.g. "(5 presentations)" */
+.conf-table .sub {
   font-size: 12px;
+  color: #9ca3af;
 }
-.schedule-table tr.break td,
-.schedule-table tr.panel td {
+
+/* Invited Review badge */
+.badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-right: 6px;
+  background: #eef1fc;
+  color: #3a5fc8;
+  border: 1px solid #d0d5e8;
+  vertical-align: middle;
+}
+
+/* Coffee Break row */
+.break-row td {
+  background: #f5f6fa;
+  color: #6b7280;
   font-style: italic;
-  color: #555;
-  background: #f7f7f7;
+  font-size: 13px;
+  text-align: center;
 }
-.tbc { font-size: 11px; color: #999; }
+.break-row .time-col {
+  text-align: left;
+  font-style: normal;
+  color: #6b7280;
+}
+
+/* Panel row */
+.panel-row td {
+  background: #f0f3fb;
+  color: #2a3670;
+  font-weight: 500;
+  font-size: 13.5px;
+  text-align: center;
+}
+.panel-row .time-col {
+  text-align: left;
+  color: #3a5fc8;
+}
