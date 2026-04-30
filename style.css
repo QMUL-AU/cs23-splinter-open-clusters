@@ -344,3 +344,36 @@ footer p {
 
   position: relative;
 }
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.schedule-table th {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 2px solid #ccc;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
+}
+.schedule-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+}
+.schedule-table .time {
+  white-space: nowrap;
+  font-family: monospace;
+  color: #555;
+  font-size: 12px;
+}
+.schedule-table tr.break td,
+.schedule-table tr.panel td {
+  font-style: italic;
+  color: #555;
+  background: #f7f7f7;
+}
+.tbc { font-size: 11px; color: #999; }
