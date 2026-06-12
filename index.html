@@ -110,5 +110,218 @@
             <!-- <p>Organized by Deepak, Beatrice and team | Contact: d.chahal@qmul.ac.uk & b.caccherano@qmul.ac.uk</p> -->
         </div>
     </footer>
+
+    
+<!-- ================================================================= -->
+<!--  CS23 SPLINTER  —  ANNOUNCEMENT BANNER + POP-UP                    -->
+<!--                                                                    -->
+<!--  There are TWO blocks below:                                       -->
+<!--   (A) PERMANENT BANNER  -> paste inside <body>, where you want it   -->
+<!--       to sit on the page (e.g. right under the date / "Join us"    -->
+<!--       line). This stays on the page and never disappears.          -->
+<!--   (B) POP-UP            -> paste just before </body>. It greets     -->
+<!--       visitors on load; closing it does NOT remove the banner.     -->
+<!--                                                                    -->
+<!--  Both share ONE <style> block (kept with the banner) and reuse     -->
+<!--  the SAME QR image. Add CS23-OC-splinter-QRcode.png to your repo   -->
+<!--  (same folder as index.html, or change the src paths below).       -->
+<!-- ================================================================= -->
+
+
+<!-- =============== SHARED STYLES (keep with block A) ================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500&display=swap" rel="stylesheet">
+<style>
+  /* ---- shared tokens / building blocks (prefixed cs23-) ---- */
+  .cs23-eyebrow{
+    display:inline-block; font:600 11px/1 system-ui,sans-serif;
+    letter-spacing:.16em; text-transform:uppercase; color:#f5c46b; margin-bottom:12px;
+  }
+  .cs23-title{
+    font-family:"Newsreader",Georgia,serif; font-weight:500;
+    line-height:1.12; margin:0 0 10px; color:#fff;
+  }
+  .cs23-body{ font:400 15px/1.55 system-ui,sans-serif; color:#b9c0d8; margin:0 0 20px; }
+  .cs23-actions{ display:flex; flex-wrap:wrap; gap:10px; }
+  .cs23-btn{
+    display:inline-block; padding:11px 18px; border-radius:10px;
+    font:600 14px/1 system-ui,sans-serif; text-decoration:none;
+    transition:transform .15s ease, background .2s ease, border-color .2s ease, color .2s ease;
+  }
+  .cs23-btn:active{ transform:translateY(1px); }
+  .cs23-btn-primary{ background:#f5c46b; color:#1a1304; }
+  .cs23-btn-primary:hover{ background:#ffd587; }
+  .cs23-btn-ghost{ background:transparent; color:#e9ecf6; border:1px solid rgba(255,255,255,.25); }
+  .cs23-btn-ghost:hover{ border-color:#f5c46b; color:#f5c46b; }
+  .cs23-qr-tile{
+    background:#fff; padding:12px; border-radius:14px;
+    box-shadow:0 8px 24px rgba(0,0,0,.35); line-height:0;
+  }
+  .cs23-qr-tile img{ display:block; width:150px; height:150px; border-radius:4px; }
+  .cs23-qr-caption{ text-align:center; font:500 13px/1.4 system-ui,sans-serif; color:#b9c0d8; margin:0; }
+
+  /* ---------------- (A) PERMANENT BANNER ---------------- */
+  #cs23-banner{
+    position:relative; overflow:hidden;
+    max-width:980px; margin:32px auto; padding:30px 34px;
+    background:linear-gradient(160deg,#141a33 0%,#0d1126 100%);
+    border:1px solid rgba(245,196,107,.28); border-radius:18px;
+    box-shadow:0 16px 50px rgba(0,0,0,.35);
+    display:grid; grid-template-columns:1.5fr auto; gap:30px; align-items:center;
+  }
+  #cs23-banner .cs23-title{ font-size:26px; }
+  #cs23-banner .cs23-cluster{
+    position:absolute; top:-30px; right:-30px; width:160px; height:160px; opacity:.4; pointer-events:none;
+    background-image:
+      radial-gradient(2px 2px at 30px 40px,#f5c46b 50%,transparent),
+      radial-gradient(2px 2px at 70px 20px,#fff 50%,transparent),
+      radial-gradient(1.5px 1.5px at 95px 60px,#f5c46b 50%,transparent),
+      radial-gradient(2.5px 2.5px at 55px 70px,#fff 50%,transparent),
+      radial-gradient(1.5px 1.5px at 110px 35px,#cfe3ff 50%,transparent),
+      radial-gradient(1.5px 1.5px at 40px 90px,#f5c46b 50%,transparent),
+      radial-gradient(2px 2px at 85px 95px,#fff 50%,transparent);
+  }
+  #cs23-banner .cs23-banner-right{ display:flex; flex-direction:column; align-items:center; gap:12px; position:relative; z-index:2; }
+  #cs23-banner .cs23-banner-left{ position:relative; z-index:2; }
+
+  /* ---------------- (B) POP-UP ---------------- */
+  #cs23-popup-overlay{
+    position:fixed; inset:0; z-index:9999;
+    display:flex; align-items:center; justify-content:center; padding:20px;
+    background:radial-gradient(1200px 700px at 50% -10%, rgba(40,52,96,.55), rgba(6,8,20,.82));
+    backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px);
+    opacity:0; transition:opacity .35s ease;
+  }
+  #cs23-popup-overlay.cs23-show{ opacity:1; }
+  #cs23-popup-overlay[hidden]{ display:none; }
+  #cs23-popup-card{
+    position:relative; width:min(680px,100%); overflow:hidden;
+    background:linear-gradient(160deg,#141a33 0%,#0d1126 100%);
+    border:1px solid rgba(245,196,107,.28); border-radius:18px;
+    box-shadow:0 24px 70px rgba(0,0,0,.55);
+    color:#e9ecf6; transform:translateY(14px) scale(.98);
+    transition:transform .35s cubic-bezier(.2,.8,.2,1);
+  }
+  #cs23-popup-overlay.cs23-show #cs23-popup-card{ transform:none; }
+  #cs23-popup-card .cs23-cluster{
+    position:absolute; top:-30px; right:-30px; width:160px; height:160px; opacity:.5; pointer-events:none;
+    background-image:
+      radial-gradient(2px 2px at 30px 40px,#f5c46b 50%,transparent),
+      radial-gradient(2px 2px at 70px 20px,#fff 50%,transparent),
+      radial-gradient(1.5px 1.5px at 95px 60px,#f5c46b 50%,transparent),
+      radial-gradient(2.5px 2.5px at 55px 70px,#fff 50%,transparent),
+      radial-gradient(1.5px 1.5px at 110px 35px,#cfe3ff 50%,transparent),
+      radial-gradient(1.5px 1.5px at 40px 90px,#f5c46b 50%,transparent),
+      radial-gradient(2px 2px at 85px 95px,#fff 50%,transparent);
+  }
+  #cs23-popup-close{
+    position:absolute; top:12px; right:14px; z-index:3;
+    width:34px; height:34px; border:0; border-radius:50%;
+    background:rgba(255,255,255,.08); color:#e9ecf6; font-size:22px; line-height:1; cursor:pointer;
+    transition:background .2s ease;
+  }
+  #cs23-popup-close:hover{ background:rgba(255,255,255,.18); }
+  #cs23-popup-close:focus-visible{ outline:2px solid #f5c46b; outline-offset:2px; }
+  #cs23-popup-grid{ display:grid; grid-template-columns:1.4fr 1fr; gap:30px; padding:38px 36px; }
+  #cs23-popup-grid .cs23-title{ font-size:30px; }
+  #cs23-popup-grid .cs23-popup-left{ position:relative; z-index:2; }
+  #cs23-popup-grid .cs23-popup-right{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; position:relative; z-index:2; }
+
+  /* ---------------- responsive + motion ---------------- */
+  @media (max-width:620px){
+    #cs23-banner{ grid-template-columns:1fr; text-align:center; padding:26px 22px; }
+    #cs23-banner .cs23-actions{ justify-content:center; }
+    #cs23-banner .cs23-banner-right{ order:-1; }
+  }
+  @media (max-width:560px){
+    #cs23-popup-grid{ grid-template-columns:1fr; gap:24px; padding:30px 24px; text-align:center; }
+    #cs23-popup-grid .cs23-title{ font-size:24px; }
+    #cs23-popup-grid .cs23-actions{ justify-content:center; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    #cs23-popup-overlay, #cs23-popup-card{ transition:none; }
+  }
+</style>
+
+
+<!-- ================================================================= -->
+<!--  (A) PERMANENT BANNER  — paste inside <body> where you want it    -->
+<!-- ================================================================= -->
+<section id="cs23-banner" aria-label="Program announcement">
+  <span class="cs23-cluster" aria-hidden="true"></span>
+  <div class="cs23-banner-left">
+    <span class="cs23-eyebrow">Now live</span>
+    <h2 class="cs23-title">The program schedule is out</h2>
+    <p class="cs23-body">The full session schedule is online &mdash; and don&rsquo;t miss the posters.
+      Have a question for the session? Scan the code to send it in.</p>
+    <div class="cs23-actions">
+      <a class="cs23-btn cs23-btn-primary" href="program.html">View schedule</a>
+      <a class="cs23-btn cs23-btn-ghost" href="program.html">See posters</a>
+    </div>
+  </div>
+  <div class="cs23-banner-right">
+    <div class="cs23-qr-tile">
+      <img src="images/CS23-OC-splinter-QRcode.png" alt="QR code to submit a question or comment for the splinter session">
+    </div>
+    <p class="cs23-qr-caption">Scan to send a<br>question or comment</p>
+  </div>
+</section>
+
+
+<!-- ================================================================= -->
+<!--  (B) POP-UP  — paste just before the closing </body> tag          -->
+<!-- ================================================================= -->
+<div id="cs23-popup-overlay" role="dialog" aria-modal="true" aria-labelledby="cs23-popup-title" hidden>
+  <div id="cs23-popup-card">
+    <button id="cs23-popup-close" aria-label="Close announcement">&times;</button>
+    <span class="cs23-cluster" aria-hidden="true"></span>
+    <div id="cs23-popup-grid">
+      <div class="cs23-popup-left">
+        <span class="cs23-eyebrow">CS23 &middot; Open Clusters Splinter</span>
+        <h2 class="cs23-title" id="cs23-popup-title">The program schedule is live</h2>
+        <p class="cs23-body">The full session schedule is now online &mdash; and don&rsquo;t miss the posters.</p>
+        <div class="cs23-actions">
+          <a class="cs23-btn cs23-btn-primary" href="program.html">View schedule</a>
+          <a class="cs23-btn cs23-btn-ghost" href="program.html">See posters</a>
+        </div>
+      </div>
+      <div class="cs23-popup-right">
+        <div class="cs23-qr-tile">
+          <img src="images/CS23-OC-splinter-QRcode.png" alt="QR code to submit a question or comment for the splinter session">
+        </div>
+        <p class="cs23-qr-caption">Scan to send a question<br>or comment</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var overlay = document.getElementById("cs23-popup-overlay");
+  if (!overlay) return;
+
+  function openPopup(){
+    overlay.hidden = false;
+    requestAnimationFrame(function(){ overlay.classList.add("cs23-show"); });
+  }
+  function closePopup(){
+    overlay.classList.remove("cs23-show");
+    setTimeout(function(){ overlay.hidden = true; }, 350);
+    try { sessionStorage.setItem("cs23PopupSeen","1"); } catch(e){}
+  }
+
+  // Greet visitors once per browser tab. The banner above stays regardless.
+  // To show the pop-up on EVERY visit, delete the next 3 lines and just call openPopup().
+  var seen = false;
+  try { seen = sessionStorage.getItem("cs23PopupSeen") === "1"; } catch(e){}
+  if (!seen) setTimeout(openPopup, 450);
+
+  document.getElementById("cs23-popup-close").addEventListener("click", closePopup);
+  overlay.addEventListener("click", function(e){ if (e.target === overlay) closePopup(); });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !overlay.hidden) closePopup(); });
+})();
+</script>
+<!-- ============================  END  ============================ -->
+    
 </body>
 </html>
